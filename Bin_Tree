@@ -106,6 +106,26 @@ void destroy(Bin_tree root){
     destroy(left);
     destroy(right);
 }
+int layer=0;
+void getnode_layer(Bin_tree root ,int value)
+{
+    if (root==NULL)
+    {
+        return;
+    }
+    layer++;
+    if (root->data==value)
+    {
+        cout<<" find the layer is:"<<layer<<endl;
+    }
+    else{
+        getnode_layer(root->left,value);
+        getnode_layer(root->right,value);
+    }
+    layer--;//注意
+
+
+}
 int main()
 {
     Bin_tree root = creat_node(1);
@@ -122,8 +142,10 @@ int main()
     node2->setnode(node5, node6);
     node3->setnode(node7, node8);
     // pre_bianli(root);//前序遍历
-    find_path(root);//找出所有路劲
+    // find_path(root);//找出所有路劲
     // cengxu_bianli(root);//层序遍历
+    getnode_layer(root,4);
     cout<<"num of ceng:"<<cal_cengshu(root)<<endl;
+    destroy(root);
     system("pause");
 } 
